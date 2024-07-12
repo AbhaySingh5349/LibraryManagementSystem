@@ -34,4 +34,13 @@ public class BookService {
 
         return bookRepository.save(book);
     }
+
+    public Book getBookByBookNum(String bookNum) {
+        return bookRepository.findByBookNum(bookNum);
+    }
+
+    public void updateBook(Book book) {
+        // save method is capable of both update and inserting new entry
+        bookRepository.save(book);
+    }
 }

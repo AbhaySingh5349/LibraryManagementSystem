@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AuthorRepository extends JpaRepository<Author, Integer> {
     // at compile time "hibernate" won't validate this query and it will be directly executed by SQL
-//    @Query(name = "select * from author where email = :email", nativeQuery = true)
+//    @Query(value = "select * from author where email = :email", nativeQuery = true)
 //    Author fetchAuthorByEmailByNativeQuery(String email);
 
     // query managed by "hibernate" (findBy<PARAMETER_NAME>)

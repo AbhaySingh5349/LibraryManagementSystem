@@ -35,6 +35,8 @@ public class Transaction {
     @Enumerated(value = EnumType.STRING)
     TransactionStatus transactionStatus;
 
+    int settlementAmount;
+
     // timestamp of location where DB instance is running
     @CreationTimestamp(source = SourceType.DB)
     Date createdOn;

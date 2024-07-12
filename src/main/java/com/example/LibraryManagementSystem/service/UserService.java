@@ -28,4 +28,8 @@ public class UserService {
 
         return userRepository.save(user);
     }
+
+    public User fetchUserByEmail(String email){
+        return userRepository.findByEmail(email);
+    }
 }
