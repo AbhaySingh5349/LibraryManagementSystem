@@ -8,10 +8,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/transaction")
@@ -23,8 +20,8 @@ public class TransactionController {
         this.transactionService = transactionService;
     }
 
-    @PostMapping
-    public ResponseEntity<?> issueBook(@RequestBody @Valid TransactionRequest request){
+    @PostMapping("/issue")
+    public ResponseEntity<Transaction> issueBook(@RequestBody @Valid TransactionRequest request){
         /*
         try{
             Transaction transaction = transactionService.issueBook(request);
@@ -37,5 +34,11 @@ public class TransactionController {
         // handling exception directly using ControllerAdvice
         Transaction transaction = transactionService.issueBook(request);
         return new ResponseEntity<>(transaction, HttpStatus.CREATED);
+    }
+
+    @PutMapping("/return")
+    public ResponseEntity<Integer> returnBook(@RequestBody @Valid TransactionRequest request){
+        Integer settlementAmount = transactionService.returnBook(request);
+        return new ResponseEntity<>(settlementAmount, HttpStatus.OK);
     }
 }

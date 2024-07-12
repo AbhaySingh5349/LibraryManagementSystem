@@ -2956,3 +2956,34 @@ com.example.LibraryManagementSystem.exceptions.TransactionException: user not fo
 2024-07-12T20:49:04.697+05:30  INFO 14820 --- [LibraryManagementSystem] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
 2024-07-12T20:49:04.698+05:30  INFO 14820 --- [LibraryManagementSystem] [http-nio-8080-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
 2024-07-12T20:49:04.988+05:30 ERROR 14820 --- [LibraryManagementSystem] [http-nio-8080-exec-1] c.e.L.c.ControllerExceptionAdvice        : TransactionException occurred: user not found
+2024-07-12T22:08:56.979+05:30  INFO 14820 --- [LibraryManagementSystem] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-12T22:08:57.034+05:30  INFO 14820 --- [LibraryManagementSystem] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-12T22:08:57.047+05:30  INFO 14820 --- [LibraryManagementSystem] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
+2024-07-12T22:09:01.008+05:30  INFO 17492 --- [LibraryManagementSystem] [main] c.e.L.LibraryManagementSystemApplication : Starting LibraryManagementSystemApplication using Java 18.0.1.1 with PID 17492 (C:\Users\ACER\IdeaProjects\LibraryManagementSystem\target\classes started by ACER in C:\Users\ACER\IdeaProjects\LibraryManagementSystem)
+2024-07-12T22:09:01.011+05:30  INFO 17492 --- [LibraryManagementSystem] [main] c.e.L.LibraryManagementSystemApplication : No active profile set, falling back to 1 default profile: "default"
+2024-07-12T22:09:01.720+05:30  INFO 17492 --- [LibraryManagementSystem] [main] .s.d.r.c.RepositoryConfigurationDelegate : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-07-12T22:09:01.788+05:30  INFO 17492 --- [LibraryManagementSystem] [main] .s.d.r.c.RepositoryConfigurationDelegate : Finished Spring Data repository scanning in 58 ms. Found 4 JPA repository interfaces.
+2024-07-12T22:09:02.342+05:30  INFO 17492 --- [LibraryManagementSystem] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8080 (http)
+2024-07-12T22:09:02.359+05:30  INFO 17492 --- [LibraryManagementSystem] [main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2024-07-12T22:09:02.359+05:30  INFO 17492 --- [LibraryManagementSystem] [main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.25]
+2024-07-12T22:09:02.425+05:30  INFO 17492 --- [LibraryManagementSystem] [main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2024-07-12T22:09:02.425+05:30  INFO 17492 --- [LibraryManagementSystem] [main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1360 ms
+2024-07-12T22:09:02.609+05:30  INFO 17492 --- [LibraryManagementSystem] [main] o.hibernate.jpa.internal.util.LogHelper  : HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-07-12T22:09:02.680+05:30  INFO 17492 --- [LibraryManagementSystem] [main] org.hibernate.Version                    : HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-07-12T22:09:02.717+05:30  INFO 17492 --- [LibraryManagementSystem] [main] o.h.c.internal.RegionFactoryInitiator    : HHH000026: Second-level cache disabled
+2024-07-12T22:09:03.015+05:30  INFO 17492 --- [LibraryManagementSystem] [main] o.s.o.j.p.SpringPersistenceUnitInfo      : No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-07-12T22:09:03.048+05:30  INFO 17492 --- [LibraryManagementSystem] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Starting...
+2024-07-12T22:09:03.386+05:30  INFO 17492 --- [LibraryManagementSystem] [main] com.zaxxer.hikari.pool.HikariPool        : HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@16b76858
+2024-07-12T22:09:03.388+05:30  INFO 17492 --- [LibraryManagementSystem] [main] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Start completed.
+2024-07-12T22:09:04.468+05:30  INFO 17492 --- [LibraryManagementSystem] [main] o.h.e.t.j.p.i.JtaPlatformInitiator       : HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-07-12T22:09:04.574+05:30  INFO 17492 --- [LibraryManagementSystem] [main] j.LocalContainerEntityManagerFactoryBean : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-07-12T22:09:05.040+05:30  WARN 17492 --- [LibraryManagementSystem] [main] JpaBaseConfiguration$JpaWebConfiguration : spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-07-12T22:09:05.371+05:30  INFO 17492 --- [LibraryManagementSystem] [main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8080 (http) with context path '/'
+2024-07-12T22:09:05.380+05:30  INFO 17492 --- [LibraryManagementSystem] [main] c.e.L.LibraryManagementSystemApplication : Started LibraryManagementSystemApplication in 4.826 seconds (process running for 5.213)
+2024-07-12T22:11:58.080+05:30  INFO 17492 --- [LibraryManagementSystem] [http-nio-8080-exec-2] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-07-12T22:11:58.080+05:30  INFO 17492 --- [LibraryManagementSystem] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2024-07-12T22:11:58.081+05:30  INFO 17492 --- [LibraryManagementSystem] [http-nio-8080-exec-2] o.s.web.servlet.DispatcherServlet        : Completed initialization in 1 ms
+2024-07-12T22:11:58.373+05:30 ERROR 17492 --- [LibraryManagementSystem] [http-nio-8080-exec-2] c.e.L.c.ControllerExceptionAdvice        : TransactionException occurred: user not found
+2024-07-12T22:19:37.949+05:30  INFO 17492 --- [LibraryManagementSystem] [SpringApplicationShutdownHook] j.LocalContainerEntityManagerFactoryBean : Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-07-12T22:19:37.951+05:30  INFO 17492 --- [LibraryManagementSystem] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown initiated...
+2024-07-12T22:19:37.962+05:30  INFO 17492 --- [LibraryManagementSystem] [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource       : HikariPool-1 - Shutdown completed.
