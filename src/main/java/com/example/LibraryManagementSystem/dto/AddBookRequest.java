@@ -16,7 +16,6 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE) // all non-static fields will have "private" attached
 public class AddBookRequest {
-
     @NotBlank(message = "book title should not be blank")
     String bookTitle;
 

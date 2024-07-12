@@ -27,5 +27,4 @@ public class BookController {
         Book book = bookService.addBook(request);
         return new ResponseEntity<>(book, HttpStatus.CREATED);
     }
-
 }
