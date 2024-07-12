@@ -2,6 +2,8 @@ package com.example.LibraryManagementSystem.model;
 
 import com.example.LibraryManagementSystem.enums.UserStatus;
 import com.example.LibraryManagementSystem.enums.UserType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -15,7 +17,7 @@ import java.util.List;
 @Data // getters n setters
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Builder // helps in creating instance
 @Entity // telling hibernate that table will exist in DB
 @FieldDefaults(level = AccessLevel.PRIVATE) // all non-static fields will have "private" attached
 public class Author {
@@ -33,6 +35,7 @@ public class Author {
     // so we have to use mapping by field name of author mentioned in Book table
     // List<Book> will not be stored in actual MySQL table but maintained by hibernate
     @OneToMany(mappedBy = "author")
+    @JsonIgnoreProperties(value = {"author", "user", "transactions", "createdOn", "updatedOn"}) // for bidirectional relationships, it avoids "infinite nesting"
     List<Book> books;
 
     // timestamp of location where DB instance is running

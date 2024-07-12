@@ -15,7 +15,7 @@ import java.util.List;
 @Data // getters n setters
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
+@Builder // helps in creating instance
 @Entity // telling hibernate that table will exist in DB
 @FieldDefaults(level = AccessLevel.PRIVATE) // all non-static fields will have "private" attached
 public class User {
