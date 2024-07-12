@@ -1,6 +1,7 @@
 package com.example.LibraryManagementSystem.model;
 
 import com.example.LibraryManagementSystem.enums.BookType;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -44,6 +45,7 @@ public class Book {
 
     // over the tine book can be part of different transactions
     @OneToMany(mappedBy = "book")
+    @JsonIgnore
     List<Transaction> transactions;
 
     // timestamp of location where DB instance is running
