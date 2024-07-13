@@ -10,19 +10,21 @@ import com.example.LibraryManagementSystem.model.Transaction;
 import com.example.LibraryManagementSystem.model.User;
 import com.example.LibraryManagementSystem.repository.TransactionRepository;
 import jakarta.transaction.Transactional;
+import lombok.AccessLevel;
+import lombok.experimental.FieldDefaults;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 @Service
+@FieldDefaults(level = AccessLevel.PRIVATE) // all non-static fields will have "private" attached
 public class TransactionService {
-    UserService userService;
-    BookService bookService;
-    TransactionRepository transactionRepository;
+    final UserService userService;
+    final BookService bookService;
+    final TransactionRepository transactionRepository;
 
     // to fetch key-value from "application.properties"
     @Value("${book.maximum.validity}")
@@ -83,27 +85,7 @@ public class TransactionService {
 
     @Transactional
     private Integer executeReturnTransaction(Transaction transaction, Book book){
-        long issueDate = transaction.getCreatedOn().getTime();
-        long returnDate = System.currentTimeMillis();
-
-        long timeDifference = returnDate - issueDate;
-
-        long days = TimeUnit.MICROSECONDS.toDays(timeDifference);
-
-        int amount = 0;
-        if(days > validDays){
-            // add fine
-            int fine = (int) ((days-validDays)*finePerDay);
-
-            amount = fine - Math.abs(transaction.getSettlementAmount());
-            transaction.setSettlementAmount(-fine);
-
-            transaction.setTransactionStatus(TransactionStatus.FINED);
-        }else {
-            transaction.setTransactionStatus(TransactionStatus.RETURNED);
-            amount = transaction.getSettlementAmount();
-            transaction.setSettlementAmount(0);
-        }
+        int amount = calculateFine(transaction);
 
         book.setUser(null);
         bookService.updateBook(book);
@@ -113,7 +95,7 @@ public class TransactionService {
         return amount;
     }
 
-    private User fetchUser(TransactionRequest request){
+    public User fetchUser(TransactionRequest request){
         User user = userService.fetchUserByEmail(request.getUserEmail());
         if(user == null){
             throw new TransactionException("user not found");
@@ -130,5 +112,31 @@ public class TransactionService {
             throw new TransactionException("book not found");
         }
         return book;
+    }
+
+    public int calculateFine(Transaction transaction){
+        long issueDate = transaction.getCreatedOn().getTime();
+        long returnDate = System.currentTimeMillis();
+
+        long timeDifference = returnDate - issueDate;
+
+        long days = TimeUnit.MILLISECONDS.toDays(timeDifference);
+
+        int amount = 0;
+        if(days > validDays){
+            // add fine
+            int fine = (int) ((days-validDays)*finePerDay);
+
+            amount = fine - Math.abs(transaction.getSettlementAmount());
+            transaction.setSettlementAmount(-fine);
+
+            transaction.setTransactionStatus(TransactionStatus.FINED);
+        }else {
+            transaction.setTransactionStatus(TransactionStatus.RETURNED);
+            amount = transaction.getSettlementAmount();
+            transaction.setSettlementAmount(0);
+        }
+
+        return amount;
     }
 }
