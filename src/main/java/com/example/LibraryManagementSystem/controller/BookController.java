@@ -1,5 +1,6 @@
 package com.example.LibraryManagementSystem.controller;
 
+import com.example.LibraryManagementSystem.annotations.LogAnnotation;
 import com.example.LibraryManagementSystem.dto.AddBookRequest;
 import com.example.LibraryManagementSystem.enums.BookType;
 import com.example.LibraryManagementSystem.model.Book;
@@ -32,6 +33,7 @@ public class BookController {
     }
 
     @GetMapping("/all")
+    @LogAnnotation
     public ResponseEntity<List<Book>> getBooks(@RequestParam(value = "title", required = false) String title,
                                                @RequestParam(value = "type", required = false) BookType type){
         log.info("in BOOK CONTROLLER");

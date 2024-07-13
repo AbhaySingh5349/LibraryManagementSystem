@@ -10,8 +10,6 @@ import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
-
 // Point Cut Expression: execution modifier, return type, package, class, method
 
 @Aspect
@@ -37,5 +35,16 @@ public class CustomAspect {
     @After("execution(* com.example.LibraryManagementSystem.controller.BookController.getBooks(..))")
     public void emitAfterLogs(JoinPoint joinPoint){
         log.info("emit logs AFTER: " + joinPoint.getSignature());
+    }
+
+    @Around("@annotation(com.example.LibraryManagementSystem.annotations.LogAnnotation)")
+    public Object emitAroundLogsUsingAnnotation(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
+        log.info("emit Annotation logs AROUND start: " + proceedingJoinPoint.getSignature());
+
+        Object response = proceedingJoinPoint.proceed();
+
+        log.info("emit Annotation logs AROUND end: " + proceedingJoinPoint.getSignature());
+
+        return response;
     }
 }

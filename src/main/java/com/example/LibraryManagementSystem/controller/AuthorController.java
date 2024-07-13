@@ -12,11 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/author") // base URL for controller
-public class AuthController {
+public class AuthorController {
     AuthorService authorService;
 
     @Autowired
-    public AuthController(AuthorService authorService) {
+    public AuthorController(AuthorService authorService) {
         this.authorService = authorService;
     }
 
