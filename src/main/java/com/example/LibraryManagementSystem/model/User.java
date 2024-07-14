@@ -9,8 +9,11 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SourceType;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+// all model classes whichever we plan to save in redis have to implement Serializable otherwise data will not persist in redis
 
 @Data // getters n setters
 @AllArgsConstructor
@@ -18,7 +21,7 @@ import java.util.List;
 @Builder // helps in creating instance
 @Entity // telling hibernate that table will exist in DB
 @FieldDefaults(level = AccessLevel.PRIVATE) // all non-static fields will have "private" attached
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;

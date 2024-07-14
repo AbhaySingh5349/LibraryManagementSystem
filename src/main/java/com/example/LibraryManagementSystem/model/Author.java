@@ -11,8 +11,11 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.SourceType;
 import org.hibernate.annotations.UpdateTimestamp;
 
+import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
+
+// all model classes whichever we plan to save in redis have to implement Serializable otherwise data will not persist in redis
 
 @Data // getters n setters
 @AllArgsConstructor
@@ -20,7 +23,7 @@ import java.util.List;
 @Builder // helps in creating instance
 @Entity // telling hibernate that table will exist in DB
 @FieldDefaults(level = AccessLevel.PRIVATE) // all non-static fields will have "private" attached
-public class Author {
+public class Author implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     int id;
@@ -34,7 +37,7 @@ public class Author {
     // we want a bidirectional relationship between author & book but also avoid additional table creation (author_books)
     // so we have to use mapping by field name of author mentioned in Book table
     // List<Book> will not be stored in actual MySQL table but maintained by hibernate
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
     @JsonIgnoreProperties(value = {"author", "user", "transactions", "createdOn", "updatedOn"}) // for bidirectional relationships, it avoids "infinite nesting"
     List<Book> books;
 
