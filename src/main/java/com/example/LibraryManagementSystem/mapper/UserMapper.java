@@ -11,6 +11,7 @@ public class UserMapper {
         return User.builder().
                 name(request.getUserName()).
                 email(request.getEmail()).
+                password(request.getPassword()).
                 phoneNum(request.getPhoneNum()).
                 address(request.getAddress()).
                 userStatus(UserStatus.ACTIVE).

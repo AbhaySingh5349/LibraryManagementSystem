@@ -16,6 +16,9 @@ public class AddUserRequest {
     @NotBlank(message = "user email should not be blank")
     String email;
 
+    @NotBlank(message = "user password should not be blank")
+    String password;
+
     String phoneNum;
 
     String address;

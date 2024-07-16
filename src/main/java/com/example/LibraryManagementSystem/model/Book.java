@@ -2,6 +2,7 @@ package com.example.LibraryManagementSystem.model;
 
 import com.example.LibraryManagementSystem.enums.BookType;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -48,7 +49,7 @@ public class Book implements Serializable {
 
     // over the tine book can be part of different transactions
     @OneToMany(mappedBy = "book")
-    @JsonIgnore
+    @JsonIgnoreProperties(value = {"book", "user", "createdOn", "updatedOn"}) // for bidirectional relationships, it avoids "infinite nesting"
     List<Transaction> transactions;
 
     // timestamp of location where DB instance is running
