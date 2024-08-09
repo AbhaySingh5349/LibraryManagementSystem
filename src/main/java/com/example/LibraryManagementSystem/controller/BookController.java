@@ -26,6 +26,7 @@ public class BookController {
         this.bookService = bookService;
     }
 
+    // if any validation fails, we get "400 Bad Request err"
     @PostMapping
     public ResponseEntity<Book> addBook(@RequestBody @Valid AddBookRequest request){
         Book book = bookService.addBook(request);

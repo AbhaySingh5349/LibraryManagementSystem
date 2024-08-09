@@ -34,11 +34,12 @@ public class Author implements Serializable {
     @Column(unique = true, nullable = false, length = 50)
     String email;
 
-    // we want a bidirectional relationship between author & book but also avoid additional table creation (author_books)
+    // we want a bidirectional relationship between author & book i.e fetch list of books for author also but also avoid additional table creation (author_books)
     // so we have to use mapping by field name of author mentioned in Book table
     // List<Book> will not be stored in actual MySQL table but maintained by hibernate
+    // "fetch = FetchType.EAGER" to avoid error "could not write json failed to lazily initialize a collection of role could not initialize proxy"
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties(value = {"author", "user", "transactions", "createdOn", "updatedOn"}) // for bidirectional relationships, it avoids "infinite nesting"
+    @JsonIgnoreProperties(value = {"author"}) // for bidirectional relationships, it avoids "infinite nesting" , "user", "transactions"
     List<Book> books;
 
     // timestamp of location where DB instance is running

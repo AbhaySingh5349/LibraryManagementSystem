@@ -27,6 +27,8 @@ public class AuthorService {
             return author;
         }
 
+//        Author author = authorRepository.findByEmail(email);
+
         author = authorRepository.findByEmail(email);
         if(author != null){
             redisRepository.saveAuthorToRedis(author);

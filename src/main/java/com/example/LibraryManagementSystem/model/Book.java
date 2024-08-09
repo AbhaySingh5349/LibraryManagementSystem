@@ -40,15 +40,17 @@ public class Book implements Serializable {
 
     // many books can be written by 1 author
     @ManyToOne
-    @JoinColumn
+    @JoinColumn // optional annotation to override properties of join col
+    @JsonIgnoreProperties(value = {"books", "createdOn", "updatedOn"})
     Author author; // default join col name: author_id (id being PK of Author class)
 
     // many books can be issued by 1 user
     @ManyToOne
     User user;
 
-    // over the tine book can be part of different transactions
-    @OneToMany(mappedBy = "book")
+    // over the time book can be part of different transactions
+    // "fetch = FetchType.EAGER" to avoid error "could not write json failed to lazily initialize a collection of role could not initialize proxy"
+    @OneToMany(mappedBy = "book", fetch = FetchType.EAGER)
     @JsonIgnoreProperties(value = {"book", "user", "createdOn", "updatedOn"}) // for bidirectional relationships, it avoids "infinite nesting"
     List<Transaction> transactions;
 
