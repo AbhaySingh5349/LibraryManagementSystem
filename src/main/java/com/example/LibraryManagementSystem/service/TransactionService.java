@@ -1,10 +1,12 @@
 package com.example.LibraryManagementSystem.service;
 
+import com.example.LibraryManagementSystem.dto.TransactionDTO;
 import com.example.LibraryManagementSystem.dto.TransactionRequest;
 import com.example.LibraryManagementSystem.enums.TransactionStatus;
 import com.example.LibraryManagementSystem.enums.UserStatus;
 import com.example.LibraryManagementSystem.enums.UserType;
 import com.example.LibraryManagementSystem.exceptions.TransactionException;
+import com.example.LibraryManagementSystem.mapper.TransactionMapper;
 import com.example.LibraryManagementSystem.model.Book;
 import com.example.LibraryManagementSystem.model.Transaction;
 import com.example.LibraryManagementSystem.model.User;
@@ -40,7 +42,7 @@ public class TransactionService {
         this.transactionRepository = transactionRepository;
     }
 
-    public Transaction issueBook(TransactionRequest request) {
+    public TransactionDTO issueBook(TransactionRequest request) {
         User user = fetchUser(request);
         if(user.getUserStatus().equals(UserStatus.BLOCKED)){
             throw new TransactionException("user is blocked");
@@ -68,7 +70,7 @@ public class TransactionService {
     }
 
     @Transactional // since we are making updates, so need to have transaction security
-    private Transaction executeIssueTransaction(User user, Book book){
+    private TransactionDTO executeIssueTransaction(User user, Book book){
         Transaction transaction = Transaction.builder().
                 book(book).
                 user(user).
@@ -80,7 +82,9 @@ public class TransactionService {
         book.setUser(user);
         bookService.updateBook(book);
 
-        return transactionRepository.save(transaction);
+        Transaction savedTransaction = transactionRepository.save(transaction);
+
+        return TransactionMapper.mapTransactionDTO(savedTransaction);
     }
 
     @Transactional

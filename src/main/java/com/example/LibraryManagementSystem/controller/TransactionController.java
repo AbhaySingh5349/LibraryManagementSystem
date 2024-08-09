@@ -1,5 +1,6 @@
 package com.example.LibraryManagementSystem.controller;
 
+import com.example.LibraryManagementSystem.dto.TransactionDTO;
 import com.example.LibraryManagementSystem.dto.TransactionRequest;
 import com.example.LibraryManagementSystem.exceptions.TransactionException;
 import com.example.LibraryManagementSystem.model.Transaction;
@@ -24,7 +25,7 @@ public class TransactionController {
     }
 
     @PostMapping("/issue")
-    public ResponseEntity<Transaction> issueBook(@RequestBody @Valid TransactionRequest request){
+    public ResponseEntity<TransactionDTO> issueBook(@RequestBody @Valid TransactionRequest request){
         /*
         try{
             Transaction transaction = transactionService.issueBook(request);
@@ -43,7 +44,7 @@ public class TransactionController {
         }
 
         // handling exception directly using ControllerAdvice
-        Transaction transaction = transactionService.issueBook(request);
+        TransactionDTO transaction = transactionService.issueBook(request);
         return new ResponseEntity<>(transaction, HttpStatus.CREATED);
     }
 

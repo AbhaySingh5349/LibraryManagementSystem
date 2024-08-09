@@ -41,11 +41,12 @@ public class Book implements Serializable {
     // many books can be written by 1 author
     @ManyToOne
     @JoinColumn // optional annotation to override properties of join col
-    @JsonIgnoreProperties(value = {"books", "createdOn", "updatedOn"})
+    @JsonIgnoreProperties(value = {"books", "createdOn", "updatedOn"}) // when we fetch book, we exclude these properties from "author"
     Author author; // default join col name: author_id (id being PK of Author class)
 
     // many books can be issued by 1 user
     @ManyToOne
+    @JsonIgnoreProperties(value = {"books", "transactions"})
     User user;
 
     // over the time book can be part of different transactions

@@ -39,7 +39,7 @@ public class Author implements Serializable {
     // List<Book> will not be stored in actual MySQL table but maintained by hibernate
     // "fetch = FetchType.EAGER" to avoid error "could not write json failed to lazily initialize a collection of role could not initialize proxy"
     @OneToMany(mappedBy = "author", fetch = FetchType.EAGER)
-    @JsonIgnoreProperties(value = {"author"}) // for bidirectional relationships, it avoids "infinite nesting" , "user", "transactions"
+    @JsonIgnoreProperties(value = {"author", "transactions", "user"}) // for bidirectional relationships, it avoids "infinite nesting" for "author", "user", "transactions"
     List<Book> books;
 
     // timestamp of location where DB instance is running

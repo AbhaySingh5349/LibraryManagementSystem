@@ -20,6 +20,7 @@ public class UserService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
+    // if we will try to save duplicate user, we get "500 internal server error" since we have constraint on model (DB layer)
     public User addStudent(AddUserRequest request) {
         User user = UserMapper.mapRequestUser(request);
         user.setUserType(UserType.STUDENT);

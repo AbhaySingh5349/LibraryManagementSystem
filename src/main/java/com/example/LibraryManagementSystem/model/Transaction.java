@@ -1,6 +1,7 @@
 package com.example.LibraryManagementSystem.model;
 
 import com.example.LibraryManagementSystem.enums.TransactionStatus;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.*;
 import lombok.experimental.FieldDefaults;
@@ -12,6 +13,11 @@ import java.io.Serializable;
 import java.util.Date;
 
 // all model classes whichever we plan to save in redis have to implement Serializable otherwise data will not persist in redis
+
+// transaction:
+// - user exists, type is STUDENT, status is not blocked
+// - book exists, not already issued
+// - create transaction -> map user with book -> update book status as issued -> save transaction
 
 @Data // getters n setters
 @AllArgsConstructor
