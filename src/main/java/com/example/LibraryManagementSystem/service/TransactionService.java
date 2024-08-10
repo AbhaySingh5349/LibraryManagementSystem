@@ -58,8 +58,8 @@ public class TransactionService {
 
     public Integer returnBook(TransactionRequest request) {
         User user = fetchUser(request);
-
         Book book = fetchBook(request);
+
         if(book.getUser() != user){
             throw new TransactionException("book is not issued by current user");
         }

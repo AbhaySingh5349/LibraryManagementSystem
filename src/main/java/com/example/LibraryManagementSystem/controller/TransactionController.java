@@ -14,6 +14,8 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
+// any transaction exception will be handled through "ControllerExceptionAdvice class"
+
 @RestController
 @RequestMapping("/transaction")
 public class TransactionController {
@@ -26,9 +28,10 @@ public class TransactionController {
 
     @PostMapping("/issue")
     public ResponseEntity<TransactionDTO> issueBook(@RequestBody @Valid TransactionRequest request){
+        // exception handling (but better way is to use "ControllerAdvice" to avoid using try-catch redundantly
         /*
         try{
-            Transaction transaction = transactionService.issueBook(request);
+            TransactionDTO transaction = transactionService.issueBook(request);
             return new ResponseEntity<>(transaction, HttpStatus.CREATED);
         }catch (TransactionException e){
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);

@@ -7,7 +7,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
-@ControllerAdvice // to avoid try catch blocks at individual controller method, we can write common logic here
+// to avoid try catch blocks at individual controller method, we can write common logic here & send client our custom error message
+@ControllerAdvice
 @Slf4j
 public class ControllerExceptionAdvice {
 

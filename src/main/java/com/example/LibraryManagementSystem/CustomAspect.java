@@ -25,7 +25,7 @@ public class CustomAspect {
     public Object emitAroundLogs(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {
         log.info("emit logs AROUND start: " + proceedingJoinPoint.getSignature());
 
-        Object response = proceedingJoinPoint.proceed();
+        Object response = proceedingJoinPoint.proceed();// method execution completes here
 
         log.info("emit logs AROUND end: " + proceedingJoinPoint.getSignature());
 
