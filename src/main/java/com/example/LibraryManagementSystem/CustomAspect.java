@@ -11,6 +11,8 @@ import org.aspectj.lang.annotation.Before;
 import org.springframework.stereotype.Component;
 
 // Point Cut Expression: execution modifier, return type, package, class, method
+// on which methods or annotations these advice needs to be performed
+// to be able to log data for "@Around" advice, make sure to override "ToString" method for that model
 
 @Aspect
 @Component
@@ -36,6 +38,7 @@ public class CustomAspect {
     public void emitAfterLogs(JoinPoint joinPoint){
         log.info("emit logs AFTER: " + joinPoint.getSignature());
     }
+
 
     @Around("@annotation(com.example.LibraryManagementSystem.annotations.LogAnnotation)")
     public Object emitAroundLogsUsingAnnotation(ProceedingJoinPoint proceedingJoinPoint) throws Throwable {

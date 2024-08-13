@@ -21,6 +21,8 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+// name convention for test methods: MethodName_StateUnderTest_ExpectedBehaviour
+
 @ExtendWith(MockitoExtension.class)
 public class TransactionServiceTest {
     @Mock
