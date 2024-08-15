@@ -36,6 +36,8 @@ public class RedisConfig {
 
         redisTemplate.setKeySerializer(new StringRedisSerializer()); // since we know that our key is string only
         redisTemplate.setValueSerializer(new JdkSerializationRedisSerializer());
+
+        // serializer if we have key - value as HashMap
         redisTemplate.setHashKeySerializer(new JdkSerializationRedisSerializer());
         redisTemplate.setHashValueSerializer(new JdkSerializationRedisSerializer());
 

@@ -49,6 +49,9 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException(username.concat(" user name not found"));
         }
 
+        // spring security will validate password entered in postman corresponding to email matches with user in DB stored against this phoneNum
+        // if password matches, validate whether this user has right authority to access route
+        // if user has authority, now controller has access to SecurityContext
         return user;
     }
 }

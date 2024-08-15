@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 public class RedisRepository {
     RedisTemplate redisTemplate;
 
-    String AUTHOR_KEY = "author:";
+    final String AUTHOR_KEY = "author:";
 
     @Autowired
     public RedisRepository(RedisTemplate redisTemplate) {
